@@ -2,7 +2,7 @@
 module C = Cmdliner
 
 type config =
-  { args						: string list
+  { args: string list
   }
 
 let config =
@@ -40,8 +40,8 @@ end
 
 let main () =
   try match C.Term.eval Command.hello ~catch:false with
-    | `Error _	-> exit 1
-    | _					-> exit 0
+    | `Error _  -> exit 1
+    | _         -> exit 0
   with exn -> 
     Printf.eprintf "error: %s\n" (Printexc.to_string exn); 
     exit 1
