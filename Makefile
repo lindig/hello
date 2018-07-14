@@ -5,11 +5,16 @@
 
 JB 	= jbuilder
 
+.PHONY: all install test clean
+
 all: 
 	$(JB) build
 
 install:
 	$(JB) install
+
+test:
+	$(JB) runtest
 
 clean:
 	$(JB) clean
