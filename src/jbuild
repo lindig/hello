@@ -2,6 +2,6 @@
 
 (executable
  ((name main)
-  (public_name main)
+  (public_name hello)
   (libraries
    (cmdliner))))

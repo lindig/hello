@@ -1,26 +1,19 @@
 
+
 module C = Cmdliner
-
-type config =
-  { args: string list
-  }
-
-let config =
-  { args = Sys.argv |> Array.to_list |> List.tl
-  }
 
 let hello name =
   Printf.printf "Hello, %s!\n" name
 
-let help =
-  [ `P "These options are common to all commands."
-  ; `S "MORE HELP"
-  ; `P "Use `$(mname) $(i,COMMAND) --help' for help on a single command."
-  ; `S "BUGS"
-  ; `P "Check bug reports at https://github.com/lindig/hello/issues"
-  ]
-
 module Command = struct
+  let help =
+    [ `P "These options are common to all commands."
+    ; `S "MORE HELP"
+    ; `P "Use `$(mname) $(i,COMMAND) --help' for help on a single command."
+    ; `S "BUGS"
+    ; `P "Check bug reports at https://github.com/lindig/hello/issues"
+    ]
+
   let name' =
     C.Arg.(value
            & pos 0 string "world"
@@ -35,7 +28,6 @@ module Command = struct
       ( const hello $ name'
       , info "hello" ~doc ~man:help
       )
-
 end
 
 let main () =
