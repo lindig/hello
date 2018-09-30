@@ -3,19 +3,23 @@
 # convenience during development
 #
 
-JB 	= jbuilder
+DUNE 	= dune
+SRC   = find . -not \( -path ./_build -prune \) -type f -name '*ml*'
 
 .PHONY: all install test clean
 
 all: 
-	$(JB) build
+	$(DUNE) build
 
 install:
-	$(JB) install
+	$(DUNE) install
 
 test:
-	$(JB) runtest
+	$(DUNE) runtest
 
 clean:
-	$(JB) clean
+	$(DUNE) clean
+
+format:
+	$(SRC) | xargs ocamlformat -i
 

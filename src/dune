@@ -1,0 +1,9 @@
+
+(executable
+ (name main)
+ (public_name hello)
+ (libraries cmdliner bos))
+
+(alias
+ (name    runtest)
+ (action  (run ./main.exe everybody)))
