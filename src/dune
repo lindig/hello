@@ -2,7 +2,7 @@
 (executable
  (name main)
  (public_name hello)
- (libraries cmdliner bos))
+ (libraries cmdliner))
 
 (alias
  (name    runtest)
