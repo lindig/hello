@@ -1,6 +1,8 @@
 module C = Cmdliner
 
-let hello name = Printf.printf "Hello, %s!\n" name
+let hello _name =
+  let stack = Printexc.(get_callstack 6 |> raw_backtrace_to_string) in
+  Printf.printf "Hello, %s!\n" stack
 
 module Command = struct
   let help =
