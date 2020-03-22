@@ -1,9 +1,9 @@
-
 (executable
  (name main)
  (public_name hello)
  (libraries cmdliner))
 
 (alias
- (name    runtest)
- (action  (run ./main.exe everybody)))
+ (name runtest)
+ (action
+  (run ./main.exe everybody)))

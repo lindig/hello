@@ -21,4 +21,5 @@ clean:
 
 format:
 	ocamlformat -i $$(git ls-files '*.ml*')
-
+	for f in $$(git ls-files '**/dune'); do \
+		dune format-dune-file $$f > $$f.tmp && mv $$f.tmp $$f; done
