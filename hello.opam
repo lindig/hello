@@ -1,16 +1,14 @@
-opam-version:   "1.2"
-name:           "hello"
-maintainer:     "Christian Lindig <lindig@gmail.com>"
-authors:        "Christian Lindig <lindig@gmail.com>"
-homepage:       "https://github.com/lindig/hello"
-bug-reports:    "https://github.com/lindig/hello/issues"
-license:        "Unlicense"
-dev-repo:       "https://github.com/lindig/hello.git"
-build: [
-  ["dune" "build" "-j" jobs "@install"]
-]
+opam-version: "2.0"
+name: "hello"
+synopsis: "Minimal OCaml project for starting a new one"
+maintainer: "Christian Lindig <lindig@gmail.com>"
+authors: "Christian Lindig <lindig@gmail.com>"
+license: "Unlicense"
+homepage: "https://github.com/lindig/hello"
+bug-reports: "https://github.com/lindig/hello/issues"
 depends: [
-  "dune"    {build}
+  "dune" {build}
   "cmdliner"
 ]
-
+build: ["dune" "build" "-j" jobs "@install"]
+dev-repo: "git+https://github.com/lindig/hello.git"
