@@ -5,13 +5,16 @@
 
 DUNE 	= dune
 
-.PHONY: all install test clean
+.PHONY: all install test clean uninstall format
 
 all: 
 	$(DUNE) build
 
-install:
+install: all
 	$(DUNE) install
+
+uninstall:
+	$(DUNE) uninstall
 
 test:
 	$(DUNE) runtest
