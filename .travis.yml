@@ -1,10 +1,11 @@
 language: c
-sudo: required
-install: wget https://raw.githubusercontent.com/ocaml/ocaml-ci-scripts/master/.travis-opam.sh
-script: bash -ex .travis-opam.sh
-global: PACKAGE=hello
+install: wget https://raw.githubusercontent.com/ocaml/ocaml-ci-scripts/master/.travis-docker.sh
+script: bash -ex .travis-docker.sh
+services:
+  - docker
 env:
-  - OCAML_VERSION=4.09
-os:
-  - linux
-    # - osx
+  global:
+  - PINS="hello."
+  - DISTRO="ubuntu-16.04"
+  matrix:
+  - PACKAGE="hello" OCAML_VERSION="4.09"
