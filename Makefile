@@ -4,7 +4,6 @@
 #
 
 DUNE 	= dune
-SRC   = find . -not \( -path ./_build -prune \) -type f -name '*ml*'
 
 .PHONY: all install test clean
 
@@ -21,5 +20,5 @@ clean:
 	$(DUNE) clean
 
 format:
-	$(SRC) | xargs ocamlformat -i
+	ocamlformat -i $$(git ls-files '*.ml*')
 
