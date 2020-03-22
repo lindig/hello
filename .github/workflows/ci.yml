@@ -1,4 +1,4 @@
-name: Build Hello World executable
+name: CI
 on: [push]
 jobs:
   run:

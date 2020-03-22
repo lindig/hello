@@ -1,7 +1,6 @@
 
 
-![](https://github.com/lindig/hello/workflows/ci/badge.svg)
-
+![Build](https://github.com/lindig/hello/workflows/CI/badge.svg)
 
 # Hello
 
