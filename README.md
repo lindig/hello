@@ -1,5 +1,7 @@
 
-[![Build Status](https://travis-ci.org/lindig/hello.svg?branch=master)](https://travis-ci.org/lindig/hello)
+
+![](https://github.com/lindig/hello/workflows/ci/badge.svg)
+
 
 # Hello
 
@@ -9,7 +11,7 @@ projects.
 * Top-level Makefile for convenience: just say `make` but the actual
   build is managed by Dune
 * Minimal command-line handling set up
-* [Travis] CI ready
+* GitHub Actions CI ready
 * Code is in Public Domain
 
 # Contribute
