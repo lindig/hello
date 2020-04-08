@@ -3,7 +3,7 @@
  (public_name hello)
  (libraries cmdliner))
 
-(alias
- (name runtest)
+(rule
+ (alias runtest)
  (action
   (run ./main.exe everybody)))
