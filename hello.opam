@@ -7,7 +7,7 @@ bug-reports:    "https://github.com/lindig/hello/issues"
 license:        "Unlicense"
 dev-repo:       "https://github.com/lindig/hello.git"
 build: [
-  ["dune" "build" "-j" jobs "@install"]
+  ["dune" "build" "-p" name "@install"]
 ]
 depends: [
   "dune"    {build}
