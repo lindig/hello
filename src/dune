@@ -10,7 +10,7 @@
 
 (rule
  (target build.ml)
- (deps (universe))
+ (deps (universe) build.sh)
  (action
   (with-stdout-to
    %{target}
