@@ -3,6 +3,9 @@ module C = Cmdliner
 let hello name = Printf.printf "Hello, %s!\n" name
 
 module Command = struct
+  let build = Printf.sprintf "Commit: %s Built on: %s"
+      Build.git_revision Build.build_time
+
   let help =
     [
       `P "These options are common to all commands."
@@ -10,6 +13,8 @@ module Command = struct
     ; `P "Use `$(mname) $(i,COMMAND) --help' for help on a single command."
     ; `S "BUGS"
     ; `P "Check bug reports at https://github.com/lindig/hello/issues"
+    ; `S "BUILD DETAILS"
+    ; `P build
     ]
 
   let name' =

@@ -7,3 +7,11 @@
  (alias runtest)
  (action
   (run ./main.exe everybody)))
+
+(rule
+ (target build.ml)
+ (deps (universe))
+ (action
+  (with-stdout-to
+   %{target}
+   (bash "./build.sh"))))
