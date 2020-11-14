@@ -11,5 +11,5 @@ depends: [
   "fit"
   "cmdliner"
 ]
-build: ["dune" "build" "-p" name "-j" jobs "@install"]
+build: ["dune" "build" "-p" name "-j" jobs]
 dev-repo: "git+https://github.com/lindig/hello.git"
