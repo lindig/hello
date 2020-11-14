@@ -8,6 +8,7 @@ homepage: "https://github.com/lindig/hello"
 bug-reports: "https://github.com/lindig/hello/issues"
 depends: [
   "dune" {build}
+  "fit"
   "cmdliner"
 ]
 build: ["dune" "build" "-j" jobs "@install"]
