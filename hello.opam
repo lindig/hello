@@ -11,7 +11,6 @@ depends: [
   "cmdliner"
 ]
 build: [
-  ["dune" "subst"] {pinned}
   ["dune" "build" "-p" name "-j" jobs]
 ]
 dev-repo: "git+https://github.com/lindig/hello.git"
