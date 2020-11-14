@@ -11,5 +11,8 @@ depends: [
   "fit"
   "cmdliner"
 ]
-build: ["dune" "build" "-p" name "-j" jobs]
+build: [
+  ["dune" "subst"] {pinned}
+  ["dune" "build" "-p" name "-j" jobs]
+]
 dev-repo: "git+https://github.com/lindig/hello.git"
