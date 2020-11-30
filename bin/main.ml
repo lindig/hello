@@ -1,8 +1,5 @@
 module C = Cmdliner
 
-let hello name = Printf.printf "Hello, %s!\n" name
-
-module Command = struct
   let build = Printf.sprintf "Commit: %s Built on: %s"
       Build.git_revision Build.build_time
 
@@ -25,9 +22,8 @@ module Command = struct
 
   let hello =
     let doc = "Say hello to someone" in
-    C.Term.(const hello $ name', info "hello" ~doc ~man:help)
-end
+    C.Term.(const Hello.hello $ name', info "hello" ~doc ~man:help)
 
-let main () = C.Term.(exit @@ eval Command.hello)
+let main () = C.Term.(exit @@ eval hello)
 
 let () = if !Sys.interactive then () else main ()

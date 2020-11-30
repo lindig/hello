@@ -1,5 +1,5 @@
 #
-# This Makefile is not called from Opam but only used for 
+# This Makefile is not called from Opam but only used for
 # convenience during development
 #
 
@@ -7,7 +7,7 @@ DUNE 	= dune
 
 .PHONY: all install test clean uninstall format
 
-all: 
+all:
 	$(DUNE) build -p hello
 
 install: all
@@ -21,6 +21,9 @@ test:
 
 clean:
 	$(DUNE) clean
+
+utop:
+	$(DUNE) utop
 
 format:
 	$(DUNE) build --auto-promote @fmt
