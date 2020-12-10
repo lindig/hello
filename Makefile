@@ -27,5 +27,5 @@ utop:
 
 format:
 	$(DUNE) build --auto-promote @fmt
-	opam lint
+	opam lint --normalise hello.opam > hello.tmp && mv hello.tmp hello.opam
 	git ls-files '**/*.[ch]' | xargs -n1 indent -nut -i8
