@@ -1,5 +1,7 @@
 module C = Cmdliner
 
+let dead_code = ()
+
 let build =
   Printf.sprintf "Commit: %s Built on: %s" Build.git_revision Build.build_time
 
