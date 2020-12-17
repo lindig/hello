@@ -8,7 +8,7 @@ DUNE 	= dune
 .PHONY: all install test clean uninstall format
 
 all:
-	$(DUNE) build -p hello
+	$(DUNE) build
 
 install: all
 	$(DUNE) install hello
