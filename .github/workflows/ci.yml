@@ -1,20 +1,24 @@
 name: CI
-on: [push]
+on:
+  push:
+
 jobs:
-  run:
+  build:
     name: Build
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
-        operating-system: [ ubuntu-latest ]
-        ocaml-version: [ '4.09.0']
+        operating-system:
+          - ubuntu-latest
+        ocaml-compiler:
+          - 4.11.2
     steps:
-    - uses: actions/checkout@master
-    - uses: avsm/setup-ocaml@master
-      with:
-        ocaml-version: ${{ matrix.ocaml-version }}
-    - run: opam pin add hello.dev -n .
-    - run: opam depext -yt hello
-    - run: opam install -t . --deps-only
-    - run: opam exec -- dune build
-    - run: opam exec -- dune runtest
+      - name: Checkout code
+        uses: actions/checkout@master
+      - name: Use OCaml  ${{ matrix.ocaml-compiler }}
+        uses: avsm/setup-ocaml@v2
+        with:
+          ocaml-compiler: ${{ matrix.ocaml-compiler }}
+      - run: opam install . --deps-only --with-test
+      - run: opam exec -- dune build
+      - run: opam exec -- dune runtest
