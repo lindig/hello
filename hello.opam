@@ -1,13 +1,17 @@
 opam-version: "2.0"
 synopsis: "Minimal OCaml project for starting a new one"
+description: """
+Hello is the classic hello world but organised as a proper
+OCaml project incuding command-line parsing and online help. It serves
+as a starting point for new projects."""
 maintainer: "Christian Lindig <lindig@gmail.com>"
 authors: "Christian Lindig <lindig@gmail.com>"
 license: "Unlicense"
 homepage: "https://github.com/lindig/hello"
 bug-reports: "https://github.com/lindig/hello/issues"
 depends: [
-  "dune" {build}
-  "cmdliner"
+  "dune" {>= "2.0"}
+  "cmdliner" {>= "1.0.4"}
 ]
 build: ["dune" "build" "-p" name "-j" jobs]
 dev-repo: "git+https://github.com/lindig/hello.git"
