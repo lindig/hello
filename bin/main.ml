@@ -22,7 +22,8 @@ let name' =
 
 let hello =
   let doc = "Say hello to someone" in
-  C.Term.(const Hello.hello $ name', info "hello" ~doc ~man:help)
+  let info = C.Cmd.info "hello" ~doc ~man:help in
+  C.Cmd.v info @@ C.Term.(const Hello.hello $ name')
 
-let main () = C.Term.(exit @@ eval hello)
-let () = if !Sys.interactive then () else main ()
+let main () = C.Cmd.eval hello
+let () = if !Sys.interactive then () else main () |> exit
