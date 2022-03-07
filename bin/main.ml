@@ -25,4 +25,5 @@ let hello =
   C.Term.(const Hello.hello $ name', info "hello" ~doc ~man:help)
 
 let main () = C.Term.(exit @@ eval hello)
+
 let () = if !Sys.interactive then () else main ()
