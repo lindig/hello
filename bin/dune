@@ -6,7 +6,7 @@
 (rule
  (alias runtest)
  (action
-  (run ./main.exe everybody)))
+  (run bash -c "date | ./main.exe everybody.txt")))
 
 (rule
  (target build.ml)

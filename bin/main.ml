@@ -16,13 +16,13 @@ let help =
 
 let name' =
   C.Arg.(
-    value & pos 0 string "world"
-    & info [] ~docv:"NAME"
-        ~doc:"Name of person to greet; the default is 'world'.")
+    value & pos 0 string "hello"
+    & info [] ~docv:"FILE" ~doc:"File name to use for tests")
 
 let hello =
-  let doc = "Say hello to someone" in
+  let doc = "Test compression and uncompression" in
   C.Term.(const Hello.hello $ name', info "hello" ~doc ~man:help)
 
 let main () = C.Term.(exit @@ eval hello)
+
 let () = if !Sys.interactive then () else main ()
