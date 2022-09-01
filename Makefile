@@ -19,6 +19,9 @@ uninstall:
 test:
 	$(DUNE) runtest
 
+deps:
+	opam install . --deps-only
+
 clean:
 	$(DUNE) clean
 
