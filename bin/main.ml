@@ -26,5 +26,4 @@ let hello =
   C.Cmd.v info @@ C.Term.(const Hello.hello $ name')
 
 let main () = C.Cmd.eval hello
-
 let () = if !Sys.interactive then () else main () |> exit
