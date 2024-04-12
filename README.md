@@ -18,5 +18,4 @@ projects.
 If you find this useful, please contribute back by raising pull
 requests for improvements you made.
 
-[Travis]: https://www.travis-ci.org/
 [OCaml]:  https://www.ocaml.org/
