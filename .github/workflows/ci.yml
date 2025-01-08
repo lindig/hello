@@ -18,7 +18,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@master
       - name: Use OCaml  ${{ matrix.ocaml-compiler }}
-        uses: avsm/setup-ocaml@v2
+        uses: avsm/setup-ocaml@v3
         with:
           ocaml-compiler: ${{ matrix.ocaml-compiler }}
       - run: opam install . --deps-only --with-test
