@@ -28,6 +28,9 @@ clean:
 utop:
 	$(DUNE) utop
 
+%.mli: 	%.ml
+	$(DUNE) exec -- ocaml-print-intf $< > $@
+
 format:
 	$(DUNE) build --auto-promote @fmt
 	dune format-dune-file dune-project > $$$$ && mv $$$$ dune-project
