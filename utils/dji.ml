@@ -1,35 +1,43 @@
-(* We want to represent non-overlapping float intervals with an associated value.
-   We add intervals to a map; this is rejected, when the new addition would
-   overlap with an existing interval. Hence, order of insertion matters.
-   The result is presented in increasing order (not in insertion order).
+(* We want to represent non-overlapping float intervals with an
+   associated value.  We add intervals to a map; this is rejected, when
+   the new addition would overlap with an existing interval. Hence,
+   order of insertion matters.  The result is presented in insertion
+   order (fifo).
    *)
 
 module M = Map.Make (Float)
 
-(* An interval x,y is represented as a map from x to a ('a, y) tuple. So it is ordered by x *)
+(* An interval x,y is represented as a map from x to a ('a, y) tuple. So
+   it is ordered by x; we also keep a list of intervals we accept to
+   return as the result. This is the easiest way to maintain insertion
+   order *)
 
 type 'a t = float * 'a * float
+type 'a m = { map : ('a * float) M.t; els : 'a t list }
+(* map from x to (v, y) and accepted intervals *)
 
-let empty = M.empty
+let empty = { map = M.empty; els = [] }
 
-(* Before adding a new interval (x,y) with a value 'v', we need to check: the interval to
-   the left ends before x and the interval to the right starts after y.
-   Otherwise we don't add (x,v,y) *)
-let add t (x, v, y) =
+(* Before adding a new interval (x,y) with a value 'v', we need to
+   check: the interval to the left ends before x and the interval to the
+   right starts after y.  Otherwise we don't add (x,v,y) *)
+
+let add m ((x, _, y) as xvy) =
+  let add ((x, v, y) as xvy) m =
+    { map = M.add x (v, y) m.map; els = xvy :: m.els }
+  in
   assert (x < y);
-  let before = M.find_first_opt (fun x' -> x' <= x) t in
-  let after = M.find_first_opt (fun x' -> x' >= x) t in
+  let before = M.find_first_opt (fun x' -> x' <= x) m.map in
+  let after = M.find_first_opt (fun x' -> x' >= x) m.map in
   match (before, after) with
-  | None, None -> M.add x (v, y) t
-  | Some (_, (_, y')), None when y' <= x -> M.add x (v, y) t
-  | None, Some (x', _) when y <= x' -> M.add x (v, y) t
-  | Some (_, (_, y')), Some (x', _) when y' <= x && y <= x' -> M.add x (v, y) t
-  | _ -> t
+  | None, None -> add xvy m
+  | Some (_, (_, y')), None when y' <= x -> add xvy m
+  | None, Some (x', _) when y <= x' -> add xvy m
+  | Some (_, (_, y')), Some (x', _) when y' <= x && y <= x' -> add xvy m
+  | _ -> m
 
 let from_list intervals = List.fold_left add empty intervals
-
-let disjoint intervals =
-  from_list intervals |> M.bindings |> List.map (fun (x, (v, y)) -> (x, v, y))
+let disjoint intervals = from_list intervals |> fun t -> List.rev t.els
 
 let tests =
   [
@@ -60,7 +68,7 @@ let tests =
     , [ (5., "a", 10.); (11., "c", 15.) ] )
   ; (* 10.: Reverse order of the first case, to check order dependency *)
     ( [ (7., "a", 9.); (4., "b", 6.); (1., "c", 3.) ]
-    , [ (1., "c", 3.); (4., "b", 6.); (7., "a", 9.) ] )
+    , [ (7., "a", 9.); (4., "b", 6.); (1., "c", 3.) ] )
   ]
 
 let test () =
