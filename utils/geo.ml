@@ -24,6 +24,16 @@ let degrees rad = rad *. 180.0 /. Float.pi
 let sin x = Float.sin (radians x)
 let cos x = Float.cos (radians x)
 
+let to_xy ?(origin = { lat = 52.0; lon = 0.0 }) t =
+  (* transforming to cartesian coordinates with meter unit. To keep
+     distortions small, the origin is at latitude 52 degrees *)
+  let radius = earth_radius in
+  let lat0 = radians origin.lat in
+  let lon0 = radians origin.lon in
+  let x = radius *. (radians t.lon -. lon0) *. cos t.lat in
+  let y = radius *. (radians t.lat -. lat0) in
+  (x, y)
+
 (** [distance] in meters between two points *)
 let distance p1 p2 =
   let c = radians (p2.lat +. p1.lat) /. 2.0 in

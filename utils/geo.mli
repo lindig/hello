@@ -18,3 +18,7 @@ val bearing : t -> t -> float
 val destination : t -> dist:float -> bearing:float -> t
 (* Starting from a point, where do we end up when going [dist] meters in
    direction [bearing] in degrees. *)
+
+val to_xy : ?origin:t -> t -> float * float
+(* approximate location to cartesian coordinates in meter with given
+   origin. To minimise errors, the origin should be local *)
