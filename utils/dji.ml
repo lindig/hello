@@ -27,7 +27,7 @@ let add m ((x, _, y) as xvy) =
     { map = M.add x (v, y) m.map; els = xvy :: m.els }
   in
   assert (x < y);
-  let before = M.find_first_opt (fun x' -> x' <= x) m.map in
+  let before = M.find_last_opt (fun x' -> x' <= x) m.map in
   let after = M.find_first_opt (fun x' -> x' >= x) m.map in
   match (before, after) with
   | None, None -> add xvy m
@@ -69,6 +69,14 @@ let tests =
   ; (* 10.: Reverse order of the first case, to check order dependency *)
     ( [ (7., "a", 9.); (4., "b", 6.); (1., "c", 3.) ]
     , [ (7., "a", 9.); (4., "b", 6.); (1., "c", 3.) ] )
+  ]
+
+let _example =
+  [
+    (7823.7, 136.2, 8323.7)
+  ; (3943.7, 140.3, 4443.7)
+  ; (3948.7, 140.4, 4448.7)
+  ; (7863.7, 141.0, 8363.7)
   ]
 
 let test () =
