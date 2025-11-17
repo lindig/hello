@@ -31,6 +31,12 @@ utop:
 %.mli: 	%.ml
 	$(DUNE) exec -- ocaml-print-intf $< > $@
 
+release:
+	dune-release tag
+	dune-release distrib
+	dune-release opam pkg
+	echo 'use "dune-release opam submit" to release on Opam'
+
 format:
 	$(DUNE) build --auto-promote @fmt
 	dune format-dune-file dune-project > $$$$ && mv $$$$ dune-project

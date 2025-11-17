@@ -19,8 +19,6 @@
  (description
   "Hello is the classic hello world but organised as a proper OCaml project incuding command-line parsing and online help. It serves as a starting point for new projects.")
  (depends
-  (dune
-   (>= "2.0"))
   (ocaml
    (>= 4.08.0))
   (cmdliner
